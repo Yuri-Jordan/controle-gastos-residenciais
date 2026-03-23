@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ControleGastosResidenciais.Core.Entities;
 
-namespace ControleGastosResidenciais.Infrastructure.Data
+namespace ControleGastosResidenciais.Infraestrutura.Data
 {
     /// <summary>
     /// DbContext do Entity Framework Core para o sistema de controle de despesas

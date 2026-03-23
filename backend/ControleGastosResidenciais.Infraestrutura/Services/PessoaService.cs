@@ -2,19 +2,18 @@ using AutoMapper;
 using ControleGastosResidenciais.Core.DTOs;
 using ControleGastosResidenciais.Core.Entities;
 using ControleGastosResidenciais.Core.Interfaces;
-using ExpenseControl.Core.Interfaces;
 
-namespace ExpenseControl.Infrastructure.Services
+namespace ControleGastosResidenciais.Infraestrutura.Services
 {
     /// <summary>
     /// Serviço para gerenciamento de operações de pessoa com lógica de negócio
     /// </summary>
-    public class ServicoPessoa : IPessoaService
+    public class PessoaService : IPessoaService
     {
         private readonly IRepositorio<Pessoa> _repositorioPessoa;
         private readonly IMapper _mapper;
 
-        public ServicoPessoa(IRepositorio<Pessoa> repositorioPessoa, IMapper mapper)
+        public PessoaService(IRepositorio<Pessoa> repositorioPessoa, IMapper mapper)
         {
             _repositorioPessoa = repositorioPessoa;
             _mapper = mapper;

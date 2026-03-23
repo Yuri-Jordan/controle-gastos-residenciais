@@ -1,6 +1,6 @@
 using ControleGastosResidenciais.Core.DTOs;
 
-namespace ExpenseControl.Core.Interfaces
+namespace ControleGastosResidenciais.Core.Interfaces
 {
     public interface IPessoaService
     {

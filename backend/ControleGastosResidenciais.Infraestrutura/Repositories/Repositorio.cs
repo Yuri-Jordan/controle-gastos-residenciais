@@ -1,9 +1,9 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using ControleGastosResidenciais.Infrastructure.Data;
+using ControleGastosResidenciais.Infraestrutura.Data;
 using ControleGastosResidenciais.Core.Interfaces;
 
-namespace ControleGastosResidenciais.Infrastructure.Repositories
+namespace ControleGastosResidenciais.Infraestrutura.Repositories
 {
     /// <summary>
     /// Implementação genérica de repositório utilizando Entity Framework Core
