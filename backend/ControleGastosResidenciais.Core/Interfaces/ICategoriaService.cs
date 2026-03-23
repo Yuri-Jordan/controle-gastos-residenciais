@@ -6,5 +6,6 @@ namespace ControleGastosResidenciais.Core.Interfaces
     {
         Task<IEnumerable<CategoriaDto>> ObterTodasCategoriasAsync();
         Task<CategoriaDto> CriarCategoriaAsync(CriarCategoriaDto criarCategoriaDto);
+        Task<CategoriaDto?> ObterCategoriaPorIdAsync(Guid id);
     }
 }

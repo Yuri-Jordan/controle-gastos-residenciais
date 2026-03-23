@@ -69,5 +69,15 @@ namespace ControleGastosResidenciais.Infraestrutura.Services
                 _ => "Desconhecido"
             };
         }
+
+        public async Task<CategoriaDto?> ObterCategoriaPorIdAsync(Guid id)
+        {
+             var categoria = await _repositorioCategoria.ObterPorIdAsync(id);
+            if (categoria == null) return null;
+            
+            var dto = _mapper.Map<CategoriaDto>(categoria);
+            dto.ExibirFinalidade = ObterDescricaoFinalidade(dto.Finalidade);
+            return dto;
+        }
     }
 }

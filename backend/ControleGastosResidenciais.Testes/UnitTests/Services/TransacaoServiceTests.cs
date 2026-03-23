@@ -282,34 +282,6 @@ namespace ControleGastosResidenciais.Testes.UnitTests.Services
         }
 
         [Fact]
-        public async Task ExcluirTransacaoAsync_ComIdExistente_DeveExecutarComSucesso()
-        {
-            // Arrange
-            var transacaoId = Guid.NewGuid();
-            var transacao = new Transacao { Id = transacaoId, Descricao = "Compra mercado" };
-
-            _mockTransacaoRepositorio.Setup(r => r.ObterPorIdAsync(transacaoId)).ReturnsAsync(transacao);
-
-            // Act
-            await _transacaoService.ExcluirTransacaoAsync(transacaoId);
-
-            // Assert
-            _mockTransacaoRepositorio.Verify(r => r.ExcluirAsync(transacao), Times.Once);
-        }
-
-        [Fact]
-        public async Task ExcluirTransacaoAsync_ComIdInexistente_DeveLancarKeyNotFoundException()
-        {
-            // Arrange
-            var transacaoId = Guid.NewGuid();
-            _mockTransacaoRepositorio.Setup(r => r.ObterPorIdAsync(transacaoId)).ReturnsAsync((Transacao?)null);
-
-            // Act & Assert
-            await Assert.ThrowsAsync<KeyNotFoundException>(() =>
-                _transacaoService.ExcluirTransacaoAsync(transacaoId));
-        }
-
-        [Fact]
         public async Task ObterTransacoesPorPessoaAsync_DeveRetornarTransacoesDaPessoa()
         {
             // Arrange

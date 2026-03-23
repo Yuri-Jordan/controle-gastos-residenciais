@@ -92,15 +92,6 @@ namespace ControleGastosResidenciais.Infraestrutura.Services
             return _mapper.Map<TransacaoDto>(transacaoCriada);
         }
 
-        public async Task ExcluirTransacaoAsync(Guid id)
-        {
-            var transacao = await _transacaoRepositorio.ObterPorIdAsync(id);
-            if (transacao == null)
-                throw new KeyNotFoundException($"Transação com ID {id} não encontrada");
-            
-            await _transacaoRepositorio.ExcluirAsync(transacao);
-        }
-
         public async Task<IEnumerable<TransacaoDto>> ObterTransacoesPorPessoaAsync(Guid pessoaId)
         {
             var transacoes = await _transacaoRepositorio.ObterPorPessoaComIncludesAsync(pessoaId);

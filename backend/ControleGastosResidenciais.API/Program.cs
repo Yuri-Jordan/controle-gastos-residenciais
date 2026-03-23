@@ -9,21 +9,21 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container
+// Adicionar serviços ao contêiner
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-// Configure Swagger for API documentation
+// Configurar Swagger para documentação da API
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo 
     { 
-        Title = "Expense Control API", 
+        Title = "API de Controle de Gastos Residenciais", 
         Version = "v1",
-        Description = "API for managing personal expenses and revenues"
+        Description = "API para gerenciamento de despesas e receitas pessoais"
     });
     
-    // Include XML comments for better API documentation
+    // Incluir comentários XML para melhor documentação da API
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     if (File.Exists(xmlPath))
@@ -32,7 +32,7 @@ builder.Services.AddSwaggerGen(c =>
     }
 });
 
-// Configure CORS for React frontend
+// Configurar CORS para frontend React
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactApp", policy =>
@@ -44,14 +44,14 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Configure Database
+// Configurar Banco de Dados
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Register AutoMapper
+// Registrar AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
-// Register Dependency Injections
+// Registrar Injeções de Dependência
 builder.Services.AddScoped(typeof(IRepositorio<>), typeof(Repositorio<>));
 builder.Services.AddScoped<IPessoaService, PessoaService>();
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
@@ -60,13 +60,13 @@ builder.Services.AddScoped<RelatorioService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
+// Configurar o pipeline de requisições HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(c => 
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Expense Control API v1");
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "API de Controle de Gastos Residenciais v1");
         c.RoutePrefix = "swagger";
     });
 }
@@ -76,7 +76,7 @@ app.UseCors("ReactApp");
 app.UseAuthorization();
 app.MapControllers();
 
-// Ensure database is created and migrations are applied
+// Garantir que o banco de dados seja criado e as migrações sejam aplicadas
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();

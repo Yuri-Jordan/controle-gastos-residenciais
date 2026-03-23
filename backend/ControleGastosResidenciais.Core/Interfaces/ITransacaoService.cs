@@ -7,7 +7,6 @@ namespace ControleGastosResidenciais.Core.Interfaces
         Task<IEnumerable<TransacaoDto>> ObterTodasTransacoesAsync();
         Task<TransacaoDto?> ObterTransacaoPorIdAsync(Guid id);
         Task<TransacaoDto> CriarTransacaoAsync(CriarTransacaoDto criarTransacaoDto);
-        Task ExcluirTransacaoAsync(Guid id);
         Task<IEnumerable<TransacaoDto>> ObterTransacoesPorPessoaAsync(Guid pessoaId);
         Task<IEnumerable<TransacaoDto>> ObterTransacoesPorCategoriaAsync(Guid categoriaId);
     }
