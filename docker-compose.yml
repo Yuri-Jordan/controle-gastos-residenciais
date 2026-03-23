@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: controleGastosResidenciais_sql
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=admin@123
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+    networks:
+      - controleGastosResidenciais_network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: controleGastosResidenciais_api
+    environment:
+      - EnableSwaggerInProduction=true
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__DefaultConnection=Server=sql-server,1433;Database=ControleGastosResidenciaisDB;User Id=sa;Password=admin@123;TrustServerCertificate=True;
+    ports:
+      - "5000:80"
+    depends_on:
+      - sql-server
+    networks:
+      - controleGastosResidenciais_network
+
+volumes:
+  sql_data:
+
+networks:
+  controleGastosResidenciais_network:
+    driver: bridge
