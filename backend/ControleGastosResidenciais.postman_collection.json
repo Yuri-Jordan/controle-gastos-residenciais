@@ -1,0 +1,340 @@
+{
+  "info": {
+    "name": "Controle de Gastos Residenciais API",
+    "description": "API para gerenciamento de despesas e receitas pessoais",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Pessoas",
+      "item": [
+        {
+          "name": "Obter Todas as Pessoas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pessoas",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pessoas"]
+            },
+            "description": "Retorna uma lista de todas as pessoas cadastradas"
+          }
+        },
+        {
+          "name": "Obter Pessoa por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pessoas/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pessoas", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "00000000-0000-0000-0000-000000000000",
+                  "description": "ID da pessoa (GUID)"
+                }
+              ]
+            },
+            "description": "Retorna os dados de uma pessoa específica pelo ID"
+          }
+        },
+        {
+          "name": "Criar Nova Pessoa",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"João Silva\",\n  \"idade\": 25\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/pessoas",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pessoas"]
+            },
+            "description": "Cria uma nova pessoa no sistema"
+          }
+        },
+        {
+          "name": "Atualizar Pessoa",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"João Silva Santos\",\n  \"idade\": 26\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/pessoas/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pessoas", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "00000000-0000-0000-0000-000000000000",
+                  "description": "ID da pessoa (GUID)"
+                }
+              ]
+            },
+            "description": "Atualiza os dados de uma pessoa existente"
+          }
+        },
+        {
+          "name": "Excluir Pessoa",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pessoas/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pessoas", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "00000000-0000-0000-0000-000000000000",
+                  "description": "ID da pessoa (GUID)"
+                }
+              ]
+            },
+            "description": "Remove uma pessoa do sistema (com exclusão em cascata)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categorias",
+      "item": [
+        {
+          "name": "Obter Todas as Categorias",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/categorias",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "categorias"]
+            },
+            "description": "Retorna uma lista de todas as categorias cadastradas"
+          }
+        },
+        {
+          "name": "Obter Categoria por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/categorias/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "categorias", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "00000000-0000-0000-0000-000000000000",
+                  "description": "ID da categoria (GUID)"
+                }
+              ]
+            },
+            "description": "Retorna os dados de uma categoria específica pelo ID"
+          }
+        },
+        {
+          "name": "Criar Nova Categoria",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"descricao\": \"Alimentação\",\n  \"finalidade\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/categorias",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "categorias"]
+            },
+            "description": "Cria uma nova categoria no sistema\n\nValores para 'finalidade':\n- 0: Despesa\n- 1: Receita\n- 2: Ambos"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transações",
+      "item": [
+        {
+          "name": "Obter Todas as Transações",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/transacoes",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "transacoes"]
+            },
+            "description": "Retorna uma lista de todas as transações cadastradas"
+          }
+        },
+        {
+          "name": "Obter Transação por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/transacoes/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "transacoes", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "00000000-0000-0000-0000-000000000000",
+                  "description": "ID da transação (GUID)"
+                }
+              ]
+            },
+            "description": "Retorna os dados de uma transação específica pelo ID"
+          }
+        },
+        {
+          "name": "Criar Nova Transação",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"descricao\": \"Compra no supermercado\",\n  \"valor\": 150.50,\n  \"tipo\": 0,\n  \"categoriaId\": \"00000000-0000-0000-0000-000000000000\",\n  \"pessoaId\": \"00000000-0000-0000-0000-000000000000\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/transacoes",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "transacoes"]
+            },
+            "description": "Cria uma nova transação no sistema\n\nValores para 'tipo':\n- 0: Despesa\n- 1: Receita\n\nRegras de negócio:\n- Menores de idade (idade < 18) só podem criar transações de despesa"
+          }
+        },
+        {
+          "name": "Atualizar Transação",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"descricao\": \"Compra no supermercado - Atualizada\",\n  \"valor\": 175.00,\n  \"tipo\": 0,\n  \"categoriaId\": \"00000000-0000-0000-0000-000000000000\",\n  \"pessoaId\": \"00000000-0000-0000-0000-000000000000\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/transacoes/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "transacoes", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "00000000-0000-0000-0000-000000000000",
+                  "description": "ID da transação (GUID)"
+                }
+              ]
+            },
+            "description": "Atualiza os dados de uma transação existente"
+          }
+        },
+        {
+          "name": "Excluir Transação",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/transacoes/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "transacoes", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "00000000-0000-0000-0000-000000000000",
+                  "description": "ID da transação (GUID)"
+                }
+              ]
+            },
+            "description": "Remove uma transação do sistema"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Relatórios",
+      "item": [
+        {
+          "name": "Relatório - Totais por Pessoa",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/relatorios/pessoas",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "relatorios", "pessoas"]
+            },
+            "description": "Gera um relatório com totais de receitas e despesas agrupados por pessoa"
+          }
+        },
+        {
+          "name": "Relatório - Totais por Categoria",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/relatorios/categorias",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "relatorios", "categorias"]
+            },
+            "description": "Gera um relatório com totais de receitas e despesas agrupados por categoria"
+          }
+        }
+      ]
+    }
+  ]
+}

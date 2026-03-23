@@ -4,8 +4,8 @@ using ControleGastosResidenciais.Infraestrutura.Services;
 using ControleGastosResidenciais.Infraestrutura.Data;
 using ControleGastosResidenciais.Infraestrutura.Mappings;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi;
 using System.Reflection;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,7 +46,14 @@ builder.Services.AddCors(options =>
 
 // Configurar Banco de Dados
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlOptions => sqlOptions.EnableRetryOnFailure(
+            maxRetryCount: 5,
+            maxRetryDelay: TimeSpan.FromSeconds(10),
+            errorNumbersToAdd: null
+        )
+    ));
 
 // Registrar AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingProfile));
@@ -61,7 +68,7 @@ builder.Services.AddScoped<RelatorioService>();
 var app = builder.Build();
 
 // Configurar o pipeline de requisições HTTP
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || builder.Configuration.GetValue<bool>("EnableSwaggerInProduction", false))
 {
     app.UseSwagger();
     app.UseSwaggerUI(c => 
