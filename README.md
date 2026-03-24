@@ -50,8 +50,9 @@ Um sistema completo de controle de despesas residenciais com backend em .NET Cor
    - O backend aplicará automaticamente as migrações do banco de dados
 
 4. **Acesse a aplicação:**
-   - **API Base:** http://localhost:5000
-   - **Documentação Swagger:** http://localhost:5000/swagger
+   - **App Frontend:** http://localhost:3000
+   - **API:** http://localhost:5000
+   - **Documentação Swagger:** http://localhost:5000/swagger/index.html
    - **Banco de dados:** localhost:1433 (SQL Server)
 
 ### 🛠️ Desenvolvimento Local (Opcional)
