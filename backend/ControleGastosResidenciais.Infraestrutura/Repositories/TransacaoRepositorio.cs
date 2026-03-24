@@ -42,9 +42,13 @@ namespace ControleGastosResidenciais.Infraestrutura.Repositories
                 .ToListAsync();
         }
 
-        public Task<IEnumerable<Transacao>> ObterTodasComIncludesAsync()
+        public async Task<IEnumerable<Transacao>> ObterTodasComIncludesAsync()
         {
-            throw new NotImplementedException();
+            return await _contexto.Transacoes
+                .Include(t => t.Pessoa)
+                .Include(t => t.Categoria)
+                .OrderByDescending(t => t.CriadoEm)
+                .ToListAsync();
         }
     }
 }

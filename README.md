@@ -15,6 +15,14 @@ Um sistema completo de controle de despesas residenciais com backend em .NET Cor
   - Totais por Categoria com resumo geral (opcional)
 - Documentação da API com Swagger
 
+### Frontend (React + TypeScript)
+- Layout responsivo com navegação
+- Gerenciamento de Pessoas (criar, editar, excluir com confirmação)
+- Gerenciamento de Categorias (criar, lista somente leitura)
+- Gerenciamento de Transações (criar com filtragem dinâmica)
+- Relatórios com totais resumidos
+- Validação de formulários e tratamento de erros
+
 ## Como Executar a Aplicação
 
 ### Pré-requisitos
