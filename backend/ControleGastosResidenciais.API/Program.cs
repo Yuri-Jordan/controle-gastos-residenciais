@@ -60,6 +60,13 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 // Registrar Injeções de Dependência
 builder.Services.AddScoped(typeof(IRepositorio<>), typeof(Repositorio<>));
+
+// Registrar Repositórios específicos
+builder.Services.AddScoped<ITransacaoRepositorio, TransacaoRepositorio>();
+builder.Services.AddScoped<IPessoaRepositorio, PessoaRepositorio>();
+builder.Services.AddScoped<ICategoriaRepositorio, CategoriaRepositorio>();
+
+// Registrar Serviços
 builder.Services.AddScoped<IPessoaService, PessoaService>();
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 builder.Services.AddScoped<ITransacaoService, TransacaoService>();
